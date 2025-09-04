@@ -2,7 +2,7 @@
 
 team_t team1 = { .score = { .points = POINTS_0, .games = 0, .sets = 0 } };
 team_t team2 = { .score = { .points = POINTS_0, .games = 0, .sets = 0 } };
-score_history_t score_history; // zero-initialize
+score_history_t score_history;
 
 void score_init() {
     score_history.head = 0;
@@ -38,7 +38,6 @@ void score_reset_team(team_t *team) {
 void score_reset() {
     score_reset_team(&team1);
     score_reset_team(&team2);
-    score_history.head = 0;
 }
 
 void score_save_snapshot() {

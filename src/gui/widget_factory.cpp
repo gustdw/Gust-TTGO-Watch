@@ -418,6 +418,32 @@ lv_obj_t * wf_add_labeled_list(lv_obj_t *parent, char const * text, lv_obj_t ** 
     lv_obj_set_event_cb( *ret_list_obj, event_cb );
     return container;
 }
+
+/**
+ * Added by Gust
+ * Button which acts like a button, not a lever/toggle
+ */
+lv_obj_t * wf_add_button_c(lv_obj_t *parent, char const * label, int width, int height, lv_event_cb_t event_cb){
+    lv_obj_t * button = lv_btn_create(parent, NULL);
+    lv_obj_t * label_obj = lv_label_create(button, NULL);
+    lv_label_set_text(label_obj, label);
+    lv_btn_set_checkable(button, false);
+    lv_btn_set_state(button, LV_BTN_STATE_RELEASED);
+    lv_obj_add_style( button, LV_OBJ_PART_MAIN, ws_get_button_style() );
+
+    if (width != -1){
+        lv_obj_set_width(button, width);
+    }
+    if (height != -1){
+        lv_obj_set_height(button, height);
+    }
+
+    if( event_cb )
+        lv_obj_set_event_cb( button, event_cb );
+
+    return button;
+}
+
 /**
  * 
  */

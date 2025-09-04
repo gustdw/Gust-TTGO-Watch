@@ -44,15 +44,14 @@ typedef struct {
 } score_snapshot_t;
 
 typedef struct {
-    #define HISTORY_BUFF_SIZE 10
+    #define HISTORY_BUFF_SIZE 100
     score_snapshot_t snapshots[HISTORY_BUFF_SIZE];
     uint8_t head;
 } score_history_t;
 
 extern score_history_t score_history;
 
-
-// Function prototypes
+// Callable functions
 void score_reset_team(team_t *team);
 void score_add(team_t *won, team_t *lost);
 void score_reset();

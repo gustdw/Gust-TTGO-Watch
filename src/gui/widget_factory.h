@@ -497,6 +497,20 @@ lv_img_dsc_t const &wf_get_reply_img( void );
  *
  * @return  returns pointer to the added object
  */
+lv_obj_t * wf_add_button_c(lv_obj_t *parent, char const * label, int width, int height, lv_event_cb_t event_cb);
+
+
+/**
+ * @brief   Creates and adds an labeled toggle to a container
+ *
+ * @param   parent  pointer to a parent container
+ * @param   label   pointer to the button text
+ * @param   width   width of the button
+ * @param   height  height of the button
+ * @param   event_cb    the button click event function
+ *
+ * @return  returns pointer to the added object
+ */
 lv_obj_t * wf_add_button(lv_obj_t *parent, char const * label, int width, int height, lv_event_cb_t event_cb);
 
 /**
