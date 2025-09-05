@@ -1,5 +1,3 @@
-<hr/>
-
 # Gust-TTGO-Watch
 
 A fork of My-TTGO-Watch, firmware for the LilyGo T-Watch. This repository has my personal additions such as a tennis/padel scoreboard.
