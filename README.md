@@ -1,14 +1,10 @@
-<p align="center">
-<img src="https://img.shields.io/github/last-commit/sharandac/My-TTGO-Watch.svg?style=for-the-badge" />
-&nbsp;
-<img src="https://img.shields.io/github/license/sharandac/My-TTGO-Watch.svg?style=for-the-badge" />
-&nbsp;
-<a href="https://www.buymeacoffee.com/sharandac" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-%E2%82%AC5-orange?style=for-the-badge&logo=buy-me-a-coffee" /></a>
-</p>
 <hr/>
 
-# My-TTGO-Watch
+# Gust-TTGO-Watch
 
+A fork of My-TTGO-Watch, firmware for the LilyGo T-Watch. This repository has my personal additions such as a tennis/padel scoreboard.
+
+# My-TTGO-Watch
 A GUI named hedge for smartwatch like devices based on ESP32. Currently support for T-Watch2020 (V1,V2,V3), T-Watch2021  (V1 and V2, no ota-updates), M5Paper, M5Core2, WT32-SC01 and native Linux support for testing.
 
 ## Features
