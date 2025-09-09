@@ -6,6 +6,7 @@ score_history_t score_history;
 
 void score_init() {
     score_history.head = 0;
+    score_history.size = 0;
 }
 
 void score_add(team_t *won, team_t *lost) {
@@ -44,12 +45,14 @@ void score_save_snapshot() {
     score_snapshot_t score_snapshot = { .team1 = team1, .team2 = team2 };
     score_history.snapshots[score_history.head] = score_snapshot;
     score_history.head = (score_history.head + 1) % HISTORY_BUFF_SIZE;
-}
+    if (score_history.size < HISTORY_BUFF_SIZE) score_history.size++;
+}   
 
 void score_undo() {
-    if (score_history.head == 0) return;
+    if (score_history.size == 0) return;
 
-    score_history.head = (score_history.head - 1) % HISTORY_BUFF_SIZE;
+    score_history.size--;
+    score_history.head = (score_history.head + HISTORY_BUFF_SIZE - 1) % HISTORY_BUFF_SIZE;
     score_snapshot_t *snapshot = &score_history.snapshots[score_history.head];
 
     team1 = snapshot->team1;

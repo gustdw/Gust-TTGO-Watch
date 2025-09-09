@@ -39,6 +39,7 @@ void scoreboard_app_setup( void ) {
     scoreboard_app_main_tile_num = mainbar_add_app_tile( 1, 1, "scoreboard app" );
     scoreboard_app = app_register( "Scoreboard", &scoreboard_app_64px, enter_scoreboard_app_event_cb );
     scoreboard_app_main_setup( scoreboard_app_main_tile_num );
+
 }
 /**
  * @brief Get the app main tile num object

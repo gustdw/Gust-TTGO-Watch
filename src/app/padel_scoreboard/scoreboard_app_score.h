@@ -44,9 +44,10 @@ typedef struct {
 } score_snapshot_t;
 
 typedef struct {
-    #define HISTORY_BUFF_SIZE 100
+    #define HISTORY_BUFF_SIZE 255
     score_snapshot_t snapshots[HISTORY_BUFF_SIZE];
-    uint8_t head;
+    uint16_t head;
+    uint16_t size;
 } score_history_t;
 
 extern score_history_t score_history;
