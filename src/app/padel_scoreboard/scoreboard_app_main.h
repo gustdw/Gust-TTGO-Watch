@@ -1,5 +1,6 @@
 #ifndef _SCOREBOARD_APP_MAIN_H
     #define _SCOREBOARD_APP_MAIN_H
+    #include "lvgl.h"
 
     void enter_scoreboard_app_team1_score_event_cb( lv_obj_t * obj, lv_event_t event );
     void enter_scoreboard_app_team2_score_event_cb( lv_obj_t * obj, lv_event_t event );
@@ -13,6 +14,8 @@
     extern lv_obj_t *team2_games_label;
     extern lv_obj_t *team1_sets_label;
     extern lv_obj_t *team2_sets_label;
+    extern lv_obj_t *team1_turn_arrow;
+    extern lv_obj_t *team2_turn_arrow;
     
     /**
      * @brief setup main scoreboard main tile

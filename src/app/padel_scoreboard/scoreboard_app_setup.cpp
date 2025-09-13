@@ -1,10 +1,12 @@
 #include "scoreboard_app_setup.h"
 #include "scoreboard_app_main.h"
+
 #include "gui/mainbar/app_tile/app_tile.h"
 #include "gui/mainbar/main_tile/main_tile.h"
 #include "gui/mainbar/mainbar.h"
 #include "gui/statusbar.h"
 #include "gui/widget_factory.h"
+#include "lvgl.h"
 
 lv_obj_t *team1_score_btn = NULL;
 lv_obj_t *team2_score_btn = NULL;
@@ -12,6 +14,9 @@ lv_obj_t *team1_games_label = NULL;
 lv_obj_t *team2_games_label = NULL;
 lv_obj_t *team1_sets_label = NULL;
 lv_obj_t *team2_sets_label = NULL;
+lv_obj_t *team1_turn_arrow = NULL;
+lv_obj_t *team2_turn_arrow = NULL;
+LV_IMG_DECLARE(up_16px);
 
 lv_obj_t *scoreboard_app_main_tile = NULL;
 
@@ -81,12 +86,27 @@ void sets_setup(lv_obj_t * parent) {
     team2_sets_label = wf_add_label( sets_container, "0" );
 }
 
+void turn_setup(lv_obj_t * parent) {
+    // Add up arrow images below each team's score button
+    // Create arrows as children of parent, but set their parent after creation to ensure correct z-order
+    team1_turn_arrow = lv_img_create(scoreboard_app_main_tile, NULL);
+    lv_img_set_src(team1_turn_arrow, &up_16px);
+    lv_obj_align(team1_turn_arrow, team1_score_btn, LV_ALIGN_CENTER, 0, 30);
+    lv_obj_set_style_local_opa_scale(team1_turn_arrow, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP); // Initially hidden
+
+    team2_turn_arrow = lv_img_create(scoreboard_app_main_tile, NULL);
+    lv_img_set_src(team2_turn_arrow, &up_16px);
+    lv_obj_align(team2_turn_arrow, team2_score_btn, LV_ALIGN_CENTER, 0, 30);
+    lv_obj_set_style_local_opa_scale(team2_turn_arrow, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, LV_OPA_TRANSP); // Initially hidden
+}
+
 void score_setup(lv_obj_t * parent) {
     lv_obj_t * score_container = wf_add_container(parent, LV_LAYOUT_COLUMN_MID, LV_FIT_PARENT, LV_FIT_TIGHT, false);
     lv_obj_align(score_container, NULL, LV_ALIGN_IN_TOP_LEFT, 0, 0 );
     points_setup(score_container);
     games_setup(score_container);
     sets_setup(score_container);
+    turn_setup(parent);
 }
 
 void reset_setup(lv_obj_t * parent) {
@@ -132,7 +152,7 @@ void actionbar_setup(lv_obj_t * parent) {
 
 */
 
-void scoreboard_app_setup( uint32_t tile_num ) {
+void scoreboard_app_gui_setup( uint32_t tile_num ) {
     initialize_styles(tile_num);
     lv_obj_t * scoreboard_app_container = wf_add_container( scoreboard_app_main_tile, LV_LAYOUT_COLUMN_MID, LV_FIT_PARENT, LV_FIT_TIGHT, false );
     score_setup(scoreboard_app_container);

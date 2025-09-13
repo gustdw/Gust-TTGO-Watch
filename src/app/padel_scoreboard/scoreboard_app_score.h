@@ -11,7 +11,7 @@ typedef enum {
 } points_t;
 
 // Convert points_t to string representation
-static inline const char* to_score(points_t p) {
+inline const char* to_score(points_t p) {
     switch(p) {
         case POINTS_0:  return "0";
         case POINTS_15: return "15";
@@ -36,11 +36,13 @@ typedef struct {
 
 extern team_t team1;
 extern team_t team2;
+extern uint8_t turn; // 1 for team1, 2 for team2, 0 for no turn yet
 
 // Snapshot of the current score
 typedef struct {
     team_t team1;
     team_t team2;
+    uint8_t turn; // 1 for team1, 2 for team2, 0 for no turn yet
 } score_snapshot_t;
 
 typedef struct {
