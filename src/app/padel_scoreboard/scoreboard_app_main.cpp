@@ -27,7 +27,7 @@
 #include "gui/mainbar/mainbar.h"
 #include "gui/statusbar.h"
 
-// #include <hardware/ble/gadgetbridge.h>
+#include <hardware/ble/gadgetbridge.h>
 
 
 void update_labels() {
@@ -50,21 +50,21 @@ void update_labels() {
     }
 }
 
-// void gadgetbridge_send_score(score_snapshot_t score) {
-//     // Send score via BLE to connected device
-//     // Format: "Turn;T1:points,games,sets;T2:points,games,sets"
-//     #define SCORE_BUFFER_SIZE 32 // enough for "Turn;T1:AD,10,5;T2:AD,10,5" and null terminator
-//     char score_str[SCORE_BUFFER_SIZE];
-//     snprintf(score_str, sizeof(score_str), "%d;T1:%s,%d,%d;T2:%s,%d,%d",
-//              score.turn,
-//              to_score(score.team1.score.points), score.team1.score.games, score.team1.score.sets,
-//              to_score(score.team2.score.points), score.team2.score.games, score.team2.score.sets);
-//     gadgetbridge_send_msg(score_str);
-// }
+void gadgetbridge_send_score(score_snapshot_t score) {
+    // Send score via BLE to connected device
+    // Format: "Turn;T1:points,games,sets;T2:points,games,sets"
+    #define SCORE_BUFFER_SIZE 32 // enough for "Turn;T1:AD,10,5;T2:AD,10,5" and null terminator
+    char score_str[SCORE_BUFFER_SIZE];
+    snprintf(score_str, sizeof(score_str), "%d;T1:%s,%d,%d;T2:%s,%d,%d",
+             score.turn,
+             to_score(score.team1.score.points), score.team1.score.games, score.team1.score.sets,
+             to_score(score.team2.score.points), score.team2.score.games, score.team2.score.sets);
+    gadgetbridge_send_msg(score_str);
+}
 
 void update_score() {
     update_labels();
-    //gadgetbridge_send_score(score_snapshot_t{team1, team2, turn});
+    gadgetbridge_send_score(score_snapshot_t{team1, team2, turn});
 }
 
 // GUI setup
